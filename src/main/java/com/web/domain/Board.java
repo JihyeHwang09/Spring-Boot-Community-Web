@@ -1,6 +1,7 @@
 package com.web.domain;
 
 import com.web.domain.enums.BoardType;
+import lombok.Builder;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -63,5 +64,16 @@ public class Board implements Serializable {
 //     - eager는 처음 Board 도메인을 조회할 때 즉시 관련 User 객체를 함께 조회한다는 뜻이고,
 //    - lazy는 User 객체를 조회하는 시점이 아닌, 객체가 실제로 사용될 때 조회한다는 뜻이다.
 
+    @Builder
+    public Board(String title, String subTitle, String content, BoardType boardType,
+                 LocalDateTime createdDate, LocalDateTime updatedDate, User user) {
+        this.title = title;
+        this.subTitle = subTitle;
+        this.content = content;
+        this.boardType = boardType;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+        this.user = user;
+    }
 
 }
