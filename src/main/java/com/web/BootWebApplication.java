@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 import java.util.stream.IntStream;
+
 @SpringBootApplication
 public class BootWebApplication {
 
@@ -28,6 +29,11 @@ public class BootWebApplication {
 //    스프링은 빈으로 생성된 메서드에 파라미터로 DI(Dependency Injection) 시키는 메커니즘이 존재한다.
 //    생성자를 통해 의존성을 주입시키는 방법과 유사하다.
 //    이를 이용하여 CommandLineRunner를 빈으로 등록한 후 UserRepository와 BoardRepository를 주입받는다.
+    /* DI(Dependency Injection): 스프링의 주요 특성 중 하나.
+    * 주로 의존 관계 주입이라고 한다.
+    * 또는 의존 관계를 주입하는 게 아니라 단지 객체의 레퍼런스를 전달하여 참조시킨다는 의미로
+    * 의존 관계 설정이라고도 한다.
+    */
     public CommandLineRunner runner(UserRepository userRepository,
                                     BoardRepository boardRepository) throws Exception {
         return (args) -> {
@@ -36,6 +42,10 @@ public class BootWebApplication {
     User 객체를 빌더 패턴(Builder Pattern)을 사용하여 생성한 후
      주입받은 UserRepository를 사용하여 User 객체를 저장한다.
 */
+/*
+    빌더 패턴(Builder Pattern): 객체의 생성 과정과 표현 방법을 분리하여
+    객체를 단계별 동일한 생성 절차로 복잡한 객체를 만드는 패턴
+ */
             User user = userRepository.save(User.builder()
             .name("havi")
             .password("test")
