@@ -24,7 +24,7 @@ server-relative URL 방식. 즉 동일 서버 내의 다른 컨텍스트로 연�
             <h1>게시물 목록</h1>
         </div>
         <div class="pull-right" style="width:100px; margin: 10px 0;">
-            <a href="/board" class="btn btn-primary btn-block">등록</a>
+            <a href="/board/" class="btn btn-primary btn-block">등록</a>
         </div>
         <br/><br/><br/>
         <div id="mainHide">
@@ -46,20 +46,60 @@ server-relative URL 방식. 즉 동일 서버 내의 다른 컨텍스트로 연�
                     Board 객체에 getIdx()와 getTitle()메서드가 정의되어 있기 때문이다.
 -->
                     <tr th:each="">
-                        <td th:text="${board.idx}"></td>
+                        <td th:text=""></td>
                         <td th:text="${board.boardType.value}"></td>
                         <td>
                             <a th:href="'/board?idx=' + ${board.idx}" th:text="${board.title}"></a>
                         </td>
+
                         <td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
                         <td th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm')}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <!--Pagination -->
+        <nav aria-label="Page navigation" style="text-align: center;">
+            <ul class="pagination"
+                th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1,
+                    endNumber=(${boardList.totalpages} > ${startNumber}+9)?
+                        ${startNumber}+9 : ${boardList.totalPages}">
+                </li>
+<!--            th:with 구문을 사용하여 ul 태그 안에서 사용할 변수를 정의한다.
+                startNumber와 endNumber 변수로 페이지의 처음과 끝을 동적으로 계산하여 초기화한다.
+-->
+                <li><a href="/board/list?page=1">&laquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"></li>
+<!--
+                   th:style="${boardList.first} ? 'display:none'"
+                    : pageable 객체에는 편리하게도 해당 페이지가 처음인지(isFirst) 마지막인지(isLast)에 대한
+                    데이터(boolean형)를 제공한다.
+                    이를 사용하여 이전/다음 페이지의 미노출 여부를 결정한다.
+-->
+<!--
+                    th:each="page : ${#numbers.sequence(startNumber, endNumber)}"
+                    th:class="(${page} == ${boardList.number} +1)? 'active'"
+                    : 각 페이지 버튼은 th:each를 사용하여 startNumber부터 endNumber까지 출력시킨다.
+                    pageable은 현재 페이지를 알려주는 number 객체가 0부터 시작한다.
+                    그래서 ${boardList.number}+1로 비교하여
+                    현재 페이지 번호일 경우 class에 현재 페이지임을 보여주는 'active' 프로퍼티를 추가한다.
+-->
+                <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}"
+                    th:class="(${page} == ${boardList.number} +1)? 'active'">
+                    <a th:href="@{/board/list(page=${page})}" th:text="${page}"></a>
+                    <span class="sr-only"></span>
+                </li>
+
+                <li th:style="${boardList.last} ? 'display:none'">
+                    <a th:href="@{/board/list(page=${boardList.number}+2)}">&rsaquo;</a>
+                </li>
+                <li>
+                    <a th:href="@{/board/list(page=${boardList.totalPages})}">&rsaquo;</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <div th:replace="layout/footer::footer"></div>
 </body>
 </html>
+
