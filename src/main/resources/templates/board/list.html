@@ -9,11 +9,10 @@ th:test 프로퍼티와 함께 사용하면 내부에 표현된 #{...} 구문을
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Board Form</title>
-    <!--    th:href="{...}: 타임리프의 기본 링크 표현 구문
+    <!--   th:href="{...}: 타임리프의 기본 링크 표현 구문
     server-relative URL 방식. 즉 동일 서버 내의 다른 컨텍스트로 연결해주는 방식으로
     서버의 루트 경로를 기준으로 구문에서 경로를 탐색하여 href의 URL을 대체한다.
     -->
-
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
@@ -92,6 +91,7 @@ th:test 프로퍼티와 함께 사용하면 내부에 표현된 #{...} 구문을
         </ul>
     </nav>
     <!-- /Pagination -->
+
 </div>
 
 <div th:replace="layout/footer::footer"></div>
