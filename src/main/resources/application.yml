@@ -4,3 +4,62 @@ spring:
       enabled: true
   freemarker:
     cache: false
+---
+facebook:
+#  client: 소셜 미디어에서 토큰 인증을 위해 필요한 키/값(clientId와 clientSecret)를 제공한다.
+  client:
+    clientId: clientTest
+    clientSecret: clientSecretTest
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth?dispaly=popup
+    tokenName: oauth_token
+    autheticationScheme: query
+    ClientAuthenticationScheme: form
+    scope: email
+#  resource 프로퍼티는 사용자의 정보를 가져올 URI를 제공한다.
+  resource:
+#    페이스북은 특이하게 userInfoUri의 파라미터로 원하는 정보를 요청한다.
+#    원래 OAuth2 라이브러리는 client.scope에 요청 정보를 담아서 가져간다.
+#    페이스북 API 규격은 파라미터 형식으로 되어 있어서 client.scope로 정보를 요청하면,
+#    적용되지 않는 문제가 있으므로 fields=id,name,email,link와 같이 파라미터로 넣어서 처리했음
+    userInfoUri: https://graph.facebook.com/me?fields=id,name,email,link
+# clientId와 clientSecret은 개인이 발급받은 값으로 채운다.
+# 나머지 값은 거의 바뀌지 않는 고유의 정보이니 그대로 사용하면 된다.
+google:
+  client:
+    clientId: clientIdTest
+    clientSecter: clientSecretTest
+    accessTokenUri: https://accounts.google.com/o/oauth2/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+    scope: email, profile
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v2/userinfo
+
+kakao:
+  client:
+    clientId: clientIdTest
+    accessTokenUri: https://kauth.kakao.com/oauth/token
+    userAuthorizationUri: https://kauth.kakao.com/oauth/authorize
+  resource:
+    userInfoUri: https://kapi.kakao.com/v1/user/me
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
