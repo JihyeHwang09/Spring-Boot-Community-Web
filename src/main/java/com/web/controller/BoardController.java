@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/board")
 public class BoardController {
 
-//    boardService 의존성을 주입해야 하므로 @Autowired를 사용한다.
+    // boardService 의존성을 주입해야 하므로 @Autowired를 사용한다.
     @Autowired
     BoardService boardService;
 
-//    매핑 경로를 중괄호{}를 사용하여 여러 개를 받을 수 있다.
+    //  매핑 경로를 중괄호{}를 사용하여 여러 개를 받을 수 있다.
     @GetMapping({"", "/"})
 //  @RequestParam 어노테이션을 사용하여 idx 파라미터를 필수로 받는다.
 // 만약, 바인딩할 값이 없으면 defaultValue에 준 값인 기본값 '0'으로 설정된다.
@@ -27,7 +27,7 @@ public class BoardController {
     public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx,
                         Model model) {
         model.addAttribute("board", boardService.findBoardByIdx(idx));
-        return  "/board/form";
+        return "/board/form";
     }
 
     @GetMapping("/list")
@@ -39,3 +39,5 @@ public class BoardController {
         return "/board/list";
     }
 }
+
+

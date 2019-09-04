@@ -56,7 +56,7 @@ public class Board implements Serializable {
     private LocalDateTime updatedDate;
 
     @OneToOne(fetch = FetchType.LAZY)
-    private  User user;
+    private User user;
 //   @OneToOne(fetch = FetchType.LAZY)
 //   : 도메인 Board와 Board가 필드값으로 갖고 있는 User 도메인을 1:1 관계로 설정하는 어노테이션
 //     실제로 DB에 저장될 때는 User 객체가 저장되는 것이 아니라 User의 PK인 user_idx값이 저장된다.

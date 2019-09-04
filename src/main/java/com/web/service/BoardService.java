@@ -26,13 +26,12 @@ public class BoardService {
         기본 페이지 크기인 10으로 새로운 PageRequest 객체를 만들어
         페이징 처리된 게시글 리스트 반환
          */
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0? 0 : pageable.
-                getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
         return boardRepository.findAll(pageable);
     }
 
+//  board의 idx값을 사용하여 board 객체 반환
     public Board findBoardByIdx(Long idx) {
-//       board의 idx값을 사용하여 board 객체 반환
         return boardRepository.findById(idx).orElse(new Board());
     }
 }
