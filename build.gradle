@@ -1,10 +1,7 @@
-buildscript {
-    ext {
-        springBootVersion = '1.5.14.RELEASE'
-    }
-}
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
+//    id 'org.springframework.boot' version '2.1.7.RELEASE'
+//    spring boot 버전을 1.5.14로 지정
+    id 'org.springframework.boot' version '1.5.14.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
@@ -25,10 +22,16 @@ configurations {
 
 repositories {
     mavenCentral()
+    // if you are using a SNAPSHOT version
+    maven { url 'https://repo.spring.io/snapshot'}
+        //If you are using a milestone or release candidate version
+        //현재는 SNAPSHOT 버전이기 때문에 필요 없다.
+        maven { url 'https://repo.spring.io/milestone'}
 }
 
 dependencies {
-    compile 'org.springframework.security.oauth::spring-security-oauth2'
+    compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.1.BUILD-SNAPSHOT'
+    compile 'org.springframework.cloud:spring-cloud-security:2.0.0.M3'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'

@@ -4,23 +4,23 @@ package com.web.domain.enums;
  -> enum을 사용해 권한 생성 로직을 공통 코드로 처리하여 중복 코드를 줄일 수 있다.
  */
 public enum SocialType {
-    FACEBOOK("facebook");
-    GOOGLE("google");
-    KAKAO("kkakao");
+    FACEBOOK("facebook"),
+    GOOGLE("google"),
+    KAKAO("kakao");
 
     private final String ROLE_PREFIX = "ROLE_";
     private String name;
 
-    SocialType(String name) {
+    SocialType(String name){
         this.name = name;
     }
 
-    public String getRoleType() {return ROLE_PREFIX + name.toUpperCase();}
+    public String getRoleType(){ return ROLE_PREFIX + name.toUpperCase(); }
 
-    public String getValue() {
-        return name;
-    }
-    public boolean isEquals(String authority) {
+    public String getValue(){ return name; }
+
+    public boolean isEquals(String authority){
         return this.getRoleType().equals(authority);
     }
+
 }

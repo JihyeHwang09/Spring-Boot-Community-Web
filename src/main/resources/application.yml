@@ -8,8 +8,8 @@ spring:
 facebook:
 #  client: 소셜 미디어에서 토큰 인증을 위해 필요한 키/값(clientId와 clientSecret)를 제공한다.
   client:
-    clientId: clientTest
-    clientSecret: clientSecretTest
+    clientId: clientIdTest(개인마다 고유한 값)
+    clientSecret: clientSecretTest(개인마다 고유한 값)
     accessTokenUri: https://graph.facebook.com/oauth/access_token
     userAuthorizationUri: https://www.facebook.com/dialog/oauth?dispaly=popup
     tokenName: oauth_token
@@ -25,19 +25,20 @@ facebook:
     userInfoUri: https://graph.facebook.com/me?fields=id,name,email,link
 # clientId와 clientSecret은 개인이 발급받은 값으로 채운다.
 # 나머지 값은 거의 바뀌지 않는 고유의 정보이니 그대로 사용하면 된다.
+---
 google:
   client:
-    clientId: clientIdTest
-    clientSecter: clientSecretTest
+    clientId: clientIdTest(개인마다 고유한 값)
+    clientSecter: clientSecretTest(개인마다 고유한 값)
     accessTokenUri: https://accounts.google.com/o/oauth2/token
     userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
     scope: email, profile
   resource:
     userInfoUri: https://www.googleapis.com/oauth2/v2/userinfo
-
+---
 kakao:
   client:
-    clientId: clientIdTest
+    clientId: clientIdTest(개인마다 고유한 값)
     accessTokenUri: https://kauth.kakao.com/oauth/token
     userAuthorizationUri: https://kauth.kakao.com/oauth/authorize
   resource:
